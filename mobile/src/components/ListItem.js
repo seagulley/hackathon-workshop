@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-const ListItem = ({ item, deleteItem }) => {
+const ListItem = ({ item, deleteItem, editItem }) => {
   const [editting, setEditting] = useState(false)
   const [text, setText] = useState(item.text)
 
@@ -30,6 +30,7 @@ const ListItem = ({ item, deleteItem }) => {
               size={25}
               color="green"
               onPress={() => {
+                editItem(item.id, text)
                 setEditting(!editting)
               }}
             />
@@ -72,7 +73,8 @@ const ListItem = ({ item, deleteItem }) => {
 
 ListItem.propTypes = {
   item: PropTypes.object,
-  deleteItem: PropTypes.func
+  deleteItem: PropTypes.func,
+  editItem: PropTypes.func
 }
 
 const styles = StyleSheet.create({

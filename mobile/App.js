@@ -15,7 +15,7 @@ const App = () => {
 
   const deleteItem = (id) => {
     setItems((items) => {
-      return items.filter((item) => item.id != id)
+      return items.filter((item) => item.id !== id)
     })
   }
 
@@ -34,7 +34,27 @@ const App = () => {
       )
     } else {
       setItems((items) => {
-        return [{ id: Math.random(), text }, ...items]
+        return [...items, { id: Math.random(), text }]
+      })
+    }
+  }
+
+  const editItem = (id, text) => {
+    if (!text) {
+      Alert.alert(
+        'Item name is empty',
+        'Please enter a name when editting an item',
+        [
+          {
+            text: 'Understood',
+            style: 'cancel'
+          }
+        ],
+        { cancelable: true }
+      )
+    } else {
+      setItems((items) => {
+        return items.map((item) => (item.id === id ? { ...item, text } : item))
       })
     }
   }
@@ -45,7 +65,7 @@ const App = () => {
       <FlatList
         data={items}
         renderItem={({ item }) => (
-          <ListItem item={item} deleteItem={deleteItem} />
+          <ListItem item={item} deleteItem={deleteItem} editItem={editItem} />
         )}
       />
       <AddItem addItem={addItem} />
