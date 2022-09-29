@@ -4,12 +4,11 @@ const express = require('express')
 const cors = require('cors')
 
 const db = require('./db')
-// import routes //
+const productRoutes = require('./routes/ProductRoutes')
 
 const app = express()
 app.use(cors())
 app.use(express.json())
-
-// setup routes //
+app.use('/api/products', productRoutes)
 
 module.exports = app
