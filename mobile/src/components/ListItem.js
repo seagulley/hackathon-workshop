@@ -20,7 +20,8 @@ const ListItem = ({ item, deleteItem }) => {
 }
 
 ListItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  deleteItem: PropTypes.func
 }
 
 const styles = StyleSheet.create({
