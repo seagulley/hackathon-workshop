@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, FlatList } from 'react-native'
+import { View, Text, Image, StyleSheet, FlatList, Alert } from 'react-native'
 
 import Header from './src/components/Header'
 import ListItem from './src/components/ListItem'
@@ -10,7 +10,7 @@ const App = () => {
     { id: 1, text: 'Milk' },
     { id: 2, text: 'Orange' },
     { id: 3, text: 'Tofu' },
-    { id: 4, text: 'Milk' }
+    { id: 4, text: 'Chicken' }
   ])
 
   const deleteItem = (id) => {
@@ -19,10 +19,30 @@ const App = () => {
     })
   }
 
+  const addItem = (text) => {
+    if (!text) {
+      Alert.alert(
+        'No item entered',
+        'Please enter an item when adding to your shopping list',
+        [
+          {
+            text: 'Understood',
+            style: 'cancel'
+          }
+        ],
+        { cancelable: true }
+      )
+    } else {
+      setItems((items) => {
+        return [{ id: Math.random(), text }, ...items]
+      })
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Header title="Shopping List" />
-      <AddItem />
+      <AddItem addItem={addItem} />
       <FlatList
         data={items}
         renderItem={({ item }) => (
@@ -35,7 +55,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginTop: 30
   }
 })
 

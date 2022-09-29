@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   View,
@@ -9,11 +9,25 @@ import {
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-const AddItem = ({}) => {
+const AddItem = ({ addItem }) => {
+  const [text, setText] = useState('')
+
+  const onChange = (text) => {
+    setText(text)
+  }
+
   return (
     <View>
-      <TextInput placeholder="Add Item..." style={styles.input}></TextInput>
-      <TouchableOpacity style={styles.btn}>
+      <TextInput
+        placeholder="Add Item..."
+        style={styles.input}
+        onChangeText={onChange}
+      />
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          addItem(text)
+        }}>
         <Text style={styles.btnText}>
           <FontAwesome name="plus" size={20} />
           Add Item
@@ -23,7 +37,9 @@ const AddItem = ({}) => {
   )
 }
 
-AddItem.propTypes = {}
+AddItem.propTypes = {
+  addItem: PropTypes.func
+}
 
 const styles = StyleSheet.create({
   input: {

@@ -12,7 +12,9 @@ const ListItem = ({ item, deleteItem }) => {
           name="remove"
           size={20}
           color="firebrick"
-          onPress={() => deleteItem(item.id)}
+          onPress={() => {
+            deleteItem(item.id)
+          }}
         />
       </View>
     </TouchableOpacity>
