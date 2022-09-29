@@ -1,20 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
 
-const ListItem = ({item}) => {
+const ListItem = ({ item, deleteItem }) => {
   return (
     <TouchableOpacity style={styles.listItem}>
       <View style={styles.listItemView}>
         <Text style={styles.listItemText}>{item.text}</Text>
+        <FontAwesome
+          name="remove"
+          size={20}
+          color="firebrick"
+          onPress={() => deleteItem(item.id)}
+        />
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 ListItem.propTypes = {
   item: PropTypes.object
-};
+}
 
 const styles = StyleSheet.create({
   listItem: {
@@ -31,6 +38,6 @@ const styles = StyleSheet.create({
   listItemText: {
     fontSize: 18
   }
-});
+})
 
-export default ListItem;
+export default ListItem
