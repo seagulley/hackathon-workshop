@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, FlatList, Alert } from 'react-native'
+import axios from 'axios'
 
 import Header from '../components/Header'
 import ListItem from '../components/ListItem'
 import AddItem from '../components/AddItem'
 
 const Home = () => {
-  const [items, setItems] = useState([
-    { id: 1, text: 'Milk' },
-    { id: 2, text: 'Orange' },
-    { id: 3, text: 'Tofu' },
-    { id: 4, text: 'Chicken' }
-  ])
+  const [items, setItems] = useState([])
 
   const deleteItem = (id) => {
     setItems((items) => {
@@ -58,6 +54,21 @@ const Home = () => {
       })
     }
   }
+
+  const fetchItems = async () => {
+    try {
+      const res = await axios.get('http://10.0.0.175:3000/api/products')
+      setItems(() =>
+        res.data.map((item) => ({ id: item._id, text: item.name }))
+      )
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchItems()
+  }, [])
 
   return (
     <View style={styles.container}>
