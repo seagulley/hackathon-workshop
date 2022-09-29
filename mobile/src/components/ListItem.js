@@ -1,22 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput
+} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 const ListItem = ({ item, deleteItem }) => {
+  const [editting, setEditting] = useState(false)
+  const [text, setText] = useState(item.text)
+
   return (
     <TouchableOpacity style={styles.listItem}>
-      <View style={styles.listItemView}>
-        <Text style={styles.listItemText}>{item.text}</Text>
-        <FontAwesome
-          name="remove"
-          size={20}
-          color="firebrick"
-          onPress={() => {
-            deleteItem(item.id)
-          }}
-        />
-      </View>
+      {editting ? (
+        <View style={styles.listItemView}>
+          <TextInput
+            value={text}
+            style={styles.input}
+            onChangeText={(text) => {
+              setText(text)
+            }}
+          />
+          <View style={styles.iconView}>
+            <FontAwesome
+              name="check"
+              size={25}
+              color="green"
+              onPress={() => {
+                setEditting(!editting)
+              }}
+            />
+            <FontAwesome
+              name="remove"
+              size={25}
+              color="firebrick"
+              onPress={() => {
+                setEditting(!editting)
+              }}
+            />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.listItemView}>
+          <Text style={styles.listItemText}>{item.text}</Text>
+          <View style={styles.iconView}>
+            <FontAwesome
+              name="pencil"
+              size={25}
+              color="black"
+              onPress={() => {
+                setEditting(!editting)
+              }}
+            />
+            <FontAwesome
+              name="trash"
+              size={25}
+              color="firebrick"
+              onPress={() => {
+                deleteItem(item.id)
+              }}
+            />
+          </View>
+        </View>
+      )}
     </TouchableOpacity>
   )
 }
@@ -40,6 +89,19 @@ const styles = StyleSheet.create({
   },
   listItemText: {
     fontSize: 18
+  },
+  iconView: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: 70
+  },
+  input: {
+    height: 50,
+    width: 250,
+    padding: 8,
+    margin: 5,
+    borderWidth: 1,
+    borderColor: '#eee'
   }
 })
 

@@ -12,16 +12,14 @@ import { FontAwesome } from '@expo/vector-icons'
 const AddItem = ({ addItem }) => {
   const [text, setText] = useState('')
 
-  const onChange = (text) => {
-    setText(text)
-  }
-
   return (
     <View>
       <TextInput
         placeholder="Add Item..."
         style={styles.input}
-        onChangeText={onChange}
+        onChangeText={(text) => {
+          setText(text)
+        }}
       />
       <TouchableOpacity
         style={styles.btn}
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: '#0078E8',
-    padding: 9,
+    padding: 15,
     margin: 5
   },
   btnContent: {
