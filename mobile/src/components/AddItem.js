@@ -28,10 +28,10 @@ const AddItem = ({ addItem }) => {
         onPress={() => {
           addItem(text)
         }}>
-        <Text style={styles.btnText}>
-          <FontAwesome name="plus" size={20} />
-          Add Item
-        </Text>
+        <View style={styles.btnContent}>
+          <Text style={styles.btnText}>Add Item</Text>
+          <FontAwesome name="plus" size={20} color="white" />
+        </View>
       </TouchableOpacity>
     </View>
   )
@@ -43,19 +43,25 @@ AddItem.propTypes = {
 
 const styles = StyleSheet.create({
   input: {
-    height: 60,
+    height: 50,
     padding: 8,
-    margin: 5
+    margin: 5,
+    borderWidth: 1,
+    borderColor: '#eee'
   },
   btn: {
     backgroundColor: '#0078E8',
     padding: 9,
     margin: 5
   },
+  btnContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   btnText: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center'
+    color: 'white',
+    fontSize: 20
   }
 })
 

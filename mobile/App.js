@@ -42,13 +42,13 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Header title="Shopping List" />
-      <AddItem addItem={addItem} />
       <FlatList
         data={items}
         renderItem={({ item }) => (
           <ListItem item={item} deleteItem={deleteItem} />
         )}
       />
+      <AddItem addItem={addItem} />
     </View>
   )
 }
