@@ -1,18 +1,15 @@
-const express = require('express')
-const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+dotenv.config()
+const express = require('express')
 const cors = require('cors')
 
-// import router
+const db = require('./db')
+// import routes //
 
 const app = express()
-dotenv.config()
-
-// connect mongodb
-
 app.use(cors())
 app.use(express.json())
 
-// setup router
+// setup routes //
 
 module.exports = app
