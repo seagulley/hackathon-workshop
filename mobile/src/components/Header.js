@@ -20,8 +20,8 @@ Header.propTypes = {
 
 const styles = StyleSheet.create({
   header: {
-    height: 80,
-    paddingTop: 30,
+    height: 60,
+    padding: 15,
     backgroundColor: 'darkslateblue'
   },
   text: {
