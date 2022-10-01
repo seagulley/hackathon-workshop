@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, FlatList, Alert, Button, StatusBar, ToastAndroid } from 'react-native'
 import axios from 'axios'
-
 import Header from '../components/Header'
 import ListItem from '../components/ListItem'
 import AddItem from '../components/AddItem'
@@ -10,7 +9,8 @@ const API_URL = 'http://10.0.0.175:3000/api'
 
 function showToast() {
   const toasts = ["How is your day!", "Looking good, beautiful!", "Welcome back!", "Fantastic weather we are having, huh?"];
-  ToastAndroid.show(toasts[1], ToastAndroid.SHORT);
+  var toastRandom = Math.floor(Math.random() * toasts.length);
+  ToastAndroid.show(toasts[toastRandom], ToastAndroid.SHORT);
 }
 
 
