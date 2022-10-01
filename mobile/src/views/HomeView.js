@@ -4,6 +4,7 @@ import axios from 'axios'
 import Header from '../components/Header'
 import ListItem from '../components/ListItem'
 import AddItem from '../components/AddItem'
+import MoodSlider from '../components/MoodSlider'
 
 const API_URL = 'http://10.0.0.175:3000/api'
 
@@ -92,6 +93,7 @@ const Home = () => {
       />
       <AddItem addItem={addItem} /> */}
       <Button title="Show Toast" onPress={showToast} />
+      <MoodSlider />
     </View>
   )
 }
