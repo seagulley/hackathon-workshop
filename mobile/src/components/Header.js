@@ -11,7 +11,7 @@ const Header = ({ title }) => {
 }
 
 Header.defaultProps = {
-  title: 'Shopping List'
+  title: 'Mental Health Diary'
 }
 
 Header.propTypes = {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   header: {
     height: 60,
     padding: 15,
-    backgroundColor: '#0078E8'
+    backgroundColor: '#D9D9D9'
   },
   text: {
     color: '#fff',
