@@ -12,23 +12,15 @@ import { useEffect, useState } from 'react'
 import CalendarPicker from '../components/CalendarPicker.js'
 import NewEntry from '../components/NewEntry'
 
-// Get the current date
-let todayDate = new Date()
-const todayLocaleDate = todayDate.toLocaleDateString()
-todayDate = new Date(todayLocaleDate)
-const todayDateString = todayDate.toISOString().split('T')[0]
-
 // DiaryView
-const DiaryView = ({ mood, setViewMain }) => {
-  const [diaryEntries, setDiaryEntries] = useState({})
-  const [selectedDate, setSelectedDate] = useState(todayDateString)
-
+const DiaryView = ({ mood, diaryEntries, setDiaryEntries, selectedDate, setSelectedDate, todayDateString }) => {
   useEffect(() => saveMood(selectedDate, mood), [mood])
 
   const saveMood = (newDate, newMood) => {
     setDiaryEntries({
       ...diaryEntries,
       [newDate]: {
+        ...diaryEntries[newDate],
         mood: newMood
       }
     })
@@ -38,6 +30,7 @@ const DiaryView = ({ mood, setViewMain }) => {
     setDiaryEntries({
       ...diaryEntries,
       [newDate]: {
+        ...diaryEntries[newDate],
         entry: newEntry
       }
     })
@@ -88,7 +81,7 @@ const styles = StyleSheet.create({
   },
   calendar: {
     flex: 1,
-    marginTop: 40
+    // marginTop: 40
   },
   root: {
     flex: 1
