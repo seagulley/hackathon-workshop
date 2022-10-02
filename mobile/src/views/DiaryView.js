@@ -11,8 +11,10 @@ import CalendarPicker from '../components/CalendarPicker.js'
 
 const DiaryView = () => {
     return (
-      <View>
-        <CalendarPicker />
+      <View style={styles.root}>
+        <View style={styles.calendar}>
+          <CalendarPicker />
+        </View>
         <View style={styles.container}>
             <Text>Summary</Text>
             {/* <NewEntry /> */}
@@ -34,6 +36,13 @@ const styles = StyleSheet.create({
     },
     headerText: {
       fontSize: '20rem'
+    },
+    calendar: {
+      flex: 1,
+      marginTop: 40
+    },
+    root: {
+      flex: 1,
     }
   })
 

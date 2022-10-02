@@ -17,18 +17,11 @@ const CalendarPicker = () => {
         setSelectedDate(day.dateString)
       }}
       markedDates={{
-        [todayDateString]: {selected: true, selectedColor: 'green',},
+        [todayDateString]: {selected: true, selectedColor: 'green'},
         [selectedDate]: {selected: true},
       }}
     />
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 50
-  }
-})
 
 export default CalendarPicker
