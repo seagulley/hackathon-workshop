@@ -11,7 +11,7 @@ module.exports = {
   },
   getItem: async (req, res) => {
     try {
-      const item = await DiaryEntry.findOne({ date: req.params.date }).exec()
+      const item = await DiaryEntry.findById(req.params.id)
       if (!item) {
         return res.status(400).json({ message: 'Product does not exist' })
       }
@@ -32,13 +32,13 @@ module.exports = {
     }
   },
   update: async (req, res) => {
-    const item = await DiaryEntry.findOne({ date: req.params.date }).exec()
+    const item = await DiaryEntry.findById(req.params.id)
     if (!item) {
       return res.status(400).json({ message: 'Entry does not exist' })
     }
     try {
       const updatedItem = await DiaryEntry.findByIdAndUpdate(
-        req.params.date,
+        req.params.id,
         req.body
       )
       res
@@ -54,7 +54,7 @@ module.exports = {
       return res.status(400).json({ message: 'Product does not exist' })
     }
     try {
-      const deletedItem = await DiaryEntry.findByIdAndDelete(req.params.date)
+      const deletedItem = await DiaryEntry.findByIdAndDelete(req.params.id)
       res
         .status(200)
         .json({ message: 'Product is successfully deleted', deletedItem })
