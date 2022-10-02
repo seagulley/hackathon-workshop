@@ -5,13 +5,23 @@ import HomeView from './src/views/HomeView'
 
 const App = () => {
   const [viewMain, setViewMain] = useState(false)
+  const [mood, setMood] = useState(null)
 
   if (viewMain) {
-    return <DiaryView />
+    return (
+      <DiaryView 
+        mood={mood}
+        setViewMain={setViewMain}
+      />
+    )
   }
 
   return (
-      <HomeView onPress={() => setViewMain(true)} />
+      <HomeView 
+        onPress={() => setViewMain(true)} 
+        mood={mood}
+        setMood={setMood} 
+      />
     )
 }
 

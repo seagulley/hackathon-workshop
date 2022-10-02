@@ -5,9 +5,10 @@ import {
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Pressable
 } from 'react-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CalendarPicker from '../components/CalendarPicker.js'
 import NewEntry from '../components/NewEntry'
 
@@ -18,14 +19,27 @@ todayDate = new Date(todayLocaleDate)
 const todayDateString = todayDate.toISOString().split('T')[0]
 
 // DiaryView
-const DiaryView = () => {
+const DiaryView = ({ mood, setViewMain }) => {
   const [diaryEntries, setDiaryEntries] = useState({})
   const [selectedDate, setSelectedDate] = useState(todayDateString)
+
+  useEffect(() => saveMood(selectedDate, mood), [mood])
+
+  const saveMood = (newDate, newMood) => {
+    setDiaryEntries({
+      ...diaryEntries,
+      [newDate]: {
+        mood: newMood
+      }
+    })
+  }
 
   const saveEntry = (newDate, newEntry) => {
     setDiaryEntries({
       ...diaryEntries,
-      [newDate]: newEntry
+      [newDate]: {
+        entry: newEntry
+      }
     })
   }
 
@@ -38,6 +52,7 @@ const DiaryView = () => {
       <View style={styles.root}>
         <View style={styles.calendar}>
           <CalendarPicker 
+            diaryEntries={diaryEntries}
             todayDateString={todayDateString}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
