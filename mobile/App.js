@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, FlatList, Alert, Button } from 'react-native'
 import Main from './src/views/Main'
 
-
 const App = () => {
   const [viewMain, setViewMain] = useState(false)
 
