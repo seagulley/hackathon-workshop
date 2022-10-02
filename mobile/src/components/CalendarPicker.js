@@ -1,13 +1,25 @@
 import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import { Calendar, ExpandableCalendar } from 'react-native-calendars'
+
+let todayDate = new Date()
+const todayLocaleDate = todayDate.toLocaleDateString()
+todayDate = new Date(todayLocaleDate)
+const todayDateString = todayDate.toISOString().split('T')[0]
 
 const CalendarPicker = () => {
-  const [markedDate, setMarkedDate] = useState({})
+  const [selectedDate, setSelectedDate] = useState(todayDateString)
 
   return (
     <Calendar
-      enableSwipeMonths = {true}
+      enableSwipeMonths={true}
+      onDayPress={(day) => {
+        setSelectedDate(day.dateString)
+      }}
+      markedDates={{
+        [todayDateString]: {selected: true, selectedColor: 'green',},
+        [selectedDate]: {selected: true},
+      }}
     />
   )
 }
