@@ -7,14 +7,21 @@ import {
   TextInput,
   StyleSheet
 } from 'react-native'
-import { useState } from 'react'
-// import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react'
 
-const NewEntry = () => {
+const NewEntry = ({ currentDate, getEntry, saveEntry }) => {
   const [textEntry, setTextEntry] = useState('')
+  useEffect(() => {
+    if (getEntry(currentDate)) {
+      setTextEntry(getEntry(currentDate))
+    }
+    else {
+      setTextEntry('')
+    }
+  }, [currentDate])
 
-  const onSubmit = () => {
-    console.log('yay', textEntry)
+  const handlePress = () => {
+    saveEntry(currentDate, textEntry)
   }
 
   return (
@@ -25,20 +32,21 @@ const NewEntry = () => {
         numberOfLines={10}
         style={styles.input}
         keyboardType="default"
+        value={textEntry}
         onChangeText={(text) => {
           setTextEntry(text)
         }}
       />
 
       <Pressable
-        onPress={() => onSubmit()}
+        onPress={() => handlePress()}
         style={({ pressed }) => [
           {
             backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white'
           },
           styles.button
         ]}>
-        <Text>Next</Text>
+        <Text>Submit</Text>
       </Pressable>
     </View>
   )
