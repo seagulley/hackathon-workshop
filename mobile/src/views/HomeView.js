@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import MoodSelector from '../components/MoodSelector'
 
-const HomeView = ({ onPress, mood, setMood }) => {
+const HomeView = ({ navigation, mood, setMood }) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerWrapper}>
@@ -13,15 +13,16 @@ const HomeView = ({ onPress, mood, setMood }) => {
       <MoodSelector mood={mood} setMood={setMood} />
 
       <Pressable
-        onPress={onPress}
+        onPress={() => navigation.navigate('DiaryView')}
         style={({ pressed }) => [
           {
-            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white'
+            backgroundColor: pressed ? 'black' : 'white'
           },
           styles.button
-        ]}>
+        ]}
+      >
         <Text>Next</Text>
-      </Pressable>
+      </Pressable>  
     </View>
   )
 }
