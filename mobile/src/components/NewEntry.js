@@ -13,7 +13,7 @@ const NewEntry = ({ currentDate, getEntry, saveEntry }) => {
   const [textEntry, setTextEntry] = useState('')
   useEffect(() => {
     if (getEntry(currentDate)) {
-      setTextEntry(getEntry(currentDate))
+      setTextEntry(getEntry(currentDate).entry)
     }
     else {
       setTextEntry('')
