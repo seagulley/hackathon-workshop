@@ -12,7 +12,10 @@ const App = () => {
 
   return (
       <View style={styles.container}>
-        <Text>Hello! How are you feeling today?</Text>
+        <View style={styles.headerWrapper}>
+          <Text style={styles.headerText}>Hello! 👋</Text>
+          <Text style={styles.headerText}>How are you feeling today?</Text>
+        </View>
         <Button onPress={() => {setViewMain(true)}} title='next'/>
       </View>
     )
@@ -22,8 +25,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 30,
+    justifyContent: 'center',  
+    marginBottom: '20%',
+  },
+  headerWrapper: {
+    width: '80%',
+    alignItems: 'start',
+  },
+  headerText: {
+    fontSize: '20rem'
   }
 })
 
