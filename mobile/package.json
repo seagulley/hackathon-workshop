@@ -9,12 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/ngrok": "^4.1.0",
     "axios": "^0.27.2",
+    "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "~46.0.13",
     "expo-status-bar": "~1.4.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "react": "18.0.0",
-    "react-native": "0.69.6"
+    "react-native": "0.69.6",
+    "react-native-calendar-picker": "^6.1.5",
+    "react-native-calendars": "^1.1289.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
