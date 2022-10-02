@@ -6,13 +6,13 @@ import {
     Text,
     StyleSheet
 } from 'react-native'
-// import NewEntry from '../components/NewEntry'
+import NewEntry from '../components/NewEntry'
 
 const Main = () => {
     return (
         <View style={styles.container}>
             <Text>Summary</Text>
-            {/* <NewEntry /> */}
+            <NewEntry />
         </View>
     )
 }
