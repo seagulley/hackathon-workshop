@@ -1,25 +1,28 @@
 // Main contains the main page with all of the features.
 
 import {
-    Header,
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    TouchableWithoutFeedback,
+    Keyboard,
 } from 'react-native'
 import CalendarPicker from '../components/CalendarPicker.js'
-// import NewEntry from '../components/NewEntry'
+import NewEntry from '../components/NewEntry'
 
 const DiaryView = () => {
     return (
-      <View style={styles.root}>
-        <View style={styles.calendar}>
-          <CalendarPicker />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.root}>
+          <View style={styles.calendar}>
+            <CalendarPicker />
+          </View>
+          <View style={styles.container}>
+              <Text>Write an entry for (date)</Text>
+              <NewEntry />
+          </View>
         </View>
-        <View style={styles.container}>
-            <Text>Summary</Text>
-            {/* <NewEntry /> */}
-        </View>
-      </View>
+      </TouchableWithoutFeedback>
     )
 }
 
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',  
+      // justifyContent: 'center',  
       marginBottom: '20%',
     },
     headerWrapper: {
