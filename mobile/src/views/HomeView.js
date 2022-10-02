@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react'
 import MoodSelector from '../components/MoodSelector'
 
 const HomeView = ({ navigation, mood, setMood, selectedDate, diaryEntries }) => {
-  useEffect(() => {
-    if (diaryEntries[selectedDate]) {
-      setMood(diaryEntries[selectedDate].mood)
-    } else {
-      setMood(null)
-    }
-  }, [selectedDate])
+  useEffect(() => setMood(getMood(selectedDate)), [selectedDate])
+
+  const getMood = (date) => {
+    diaryEntries.forEach(entry => {
+      if (selectedDate === entry.date) {
+        return entry.mood
+      }
+    })
+    return null
+  }
 
   return (
     <View style={styles.container}>

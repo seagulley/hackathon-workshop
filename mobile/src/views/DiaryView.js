@@ -13,31 +13,38 @@ import CalendarPicker from '../components/CalendarPicker.js'
 import NewEntry from '../components/NewEntry'
 
 // DiaryView
-const DiaryView = ({ mood, diaryEntries, setDiaryEntries, selectedDate, setSelectedDate, todayDateString }) => {
+const DiaryView = ({ mood, diaryEntries, setDiaryEntries, selectedDate, setSelectedDate, todayDateString, editEntries }) => {
   useEffect(() => saveMood(selectedDate, mood), [mood])
 
   const saveMood = (newDate, newMood) => {
-    setDiaryEntries({
-      ...diaryEntries,
-      [newDate]: {
-        ...diaryEntries[newDate],
-        mood: newMood
+    diaryEntries.forEach((entry, index) => {
+      if (entry.date === newDate) {
+        editEntries(entry.id, newDate, newMood, entry.entry)
+      }
+      else if (index === diaryEntries.length - 1) {
+        addEntries(newDate, newMood, '')
       }
     })
   }
 
   const saveEntry = (newDate, newEntry) => {
-    setDiaryEntries({
-      ...diaryEntries,
-      [newDate]: {
-        ...diaryEntries[newDate],
-        entry: newEntry
+    diaryEntries.forEach((entry, index) => {
+      if (entry.date === newDate) {
+        editEntries(entry.id, newDate, entry.mood, newEntry)
+      }
+      else if (index === diaryEntries.length - 1) {
+        addEntries(newDate, null, newEntry)
       }
     })
   }
 
   const getEntry = (date) => {
-    return diaryEntries[date]
+    diaryEntries.forEach(entry => {
+      if (entry.date === date) {
+        return entry
+      }
+    })
+    return null
   }
 
   return (
