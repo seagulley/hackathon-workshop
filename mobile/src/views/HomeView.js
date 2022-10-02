@@ -1,8 +1,16 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MoodSelector from '../components/MoodSelector'
 
-const HomeView = ({ navigation, mood, setMood }) => {
+const HomeView = ({ navigation, mood, setMood, selectedDate, diaryEntries }) => {
+  useEffect(() => {
+    if (diaryEntries[selectedDate]) {
+      setMood(diaryEntries[selectedDate].mood)
+    } else {
+      setMood(null)
+    }
+  }, [selectedDate])
+
   return (
     <View style={styles.container}>
       <View style={styles.headerWrapper}>

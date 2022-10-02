@@ -36,7 +36,7 @@ const App = () => {
           name="HomeView"
           options={{title: 'Home'}}
         >
-          {(props) => <HomeView {...props} mood={mood} setMood={setMood} />}
+          {(props) => <HomeView {...props} mood={mood} setMood={setMood} selectedDate={selectedDate} diaryEntries={diaryEntries} />}
         </Stack.Screen>
 
         <Stack.Screen 
