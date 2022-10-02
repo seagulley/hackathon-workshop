@@ -1,9 +1,9 @@
-const Product = require('../models/Product')
+const DiaryEntry = require('../models/diaryEntry')
 
 module.exports = {
   getAll: async (_, res) => {
     try {
-      const items = await Product.find()
+      const items = await DiaryEntry.find()
       res.status(200).json(items)
     } catch (err) {
       res.status(500).json({ message: err })
@@ -11,7 +11,7 @@ module.exports = {
   },
   getItem: async (req, res) => {
     try {
-      const item = await Product.findById(req.params.id)
+      const item = await DiaryEntry.findOne({ date: req.params.date }).exec()
       if (!item) {
         return res.status(400).json({ message: 'Product does not exist' })
       }
@@ -21,9 +21,9 @@ module.exports = {
     }
   },
   create: async (req, res) => {
-    const newItem = new Product(req.body)
+    const newItem = new DiaryEntry(req.body)
     try {
-      const createdItem = await Product.create(newItem)
+      const createdItem = await DiaryEntry.create(newItem)
       res
         .status(201)
         .json({ message: 'Product created successfully', createdItem })
@@ -32,13 +32,13 @@ module.exports = {
     }
   },
   update: async (req, res) => {
-    const item = await Product.findById(req.params.id)
+    const item = await DiaryEntry.findOne({ date: req.params.date }).exec()
     if (!item) {
-      return res.status(400).json({ message: 'Product does not exist' })
+      return res.status(400).json({ message: 'Entry does not exist' })
     }
     try {
-      const updatedItem = await Product.findByIdAndUpdate(
-        req.params.id,
+      const updatedItem = await DiaryEntry.findByIdAndUpdate(
+        req.params.date,
         req.body
       )
       res
@@ -49,12 +49,12 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    const item = await Product.findById(req.params.id)
+    const item = await DiaryEntry.findOne({ date: req.params.date }).exec()
     if (!item) {
       return res.status(400).json({ message: 'Product does not exist' })
     }
     try {
-      const deletedItem = await Product.findByIdAndDelete(req.params.id)
+      const deletedItem = await DiaryEntry.findByIdAndDelete(req.params.date)
       res
         .status(200)
         .json({ message: 'Product is successfully deleted', deletedItem })
