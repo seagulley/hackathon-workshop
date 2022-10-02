@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { View, Text, Image, StyleSheet, FlatList, Alert, Button, Pressable } from 'react-native'
-import Summary from './src/views/Summary'
+import DiaryView from './src/views/DiaryView'
 import MoodSelector from './src/components/MoodSelector'
 
 const App = () => {
   const [viewMain, setViewMain] = useState(false)
 
   if (viewMain) {
-    return <Summary />
+    return <DiaryView />
   }
 
   return (

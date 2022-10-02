@@ -6,14 +6,18 @@ import {
     Text,
     StyleSheet
 } from 'react-native'
+import CalendarPicker from '../components/CalendarPicker.js'
 // import NewEntry from '../components/NewEntry'
 
-const Main = () => {
+const DiaryView = () => {
     return (
+      <View>
+        <CalendarPicker />
         <View style={styles.container}>
             <Text>Summary</Text>
             {/* <NewEntry /> */}
         </View>
+      </View>
     )
 }
 
@@ -33,4 +37,4 @@ const styles = StyleSheet.create({
     }
   })
 
-export default Main
+export default DiaryView
